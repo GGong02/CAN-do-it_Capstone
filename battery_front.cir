@@ -1,0 +1,27 @@
+* Battery monitor analog front-end
+* --- 1) Voltage divider ---
+Vbat vbat 0 12.6
+R1 vbat adc0 30k
+R2 adc0 0 10k
+C1 adc0 0 100n
+
+* --- 2) NTC divider (Beta model, B=3950) ---
+.param Tc=25
+V3v3 v3v3 0 3.3
+Rref v3v3 adc4 10k
+Rntc adc4 0 R={10k*exp(3950*(1/(Tc+273.15)-1/298.15))}
+
+* --- 3) Relay driver ---
+V5 v5 0 5
+Vpc0 pc0 0 PULSE(0 3.3 10m 1u 1u 40m 100m)
+Rb pc0 base 1k
+Rcoil v5 n1 70
+Lcoil n1 coll 100m
+D1 coll v5 D1N4007
+Q1 coll base 0 Q2N2222
+
+.model D1N4007 D(IS=76.9p RS=42m N=1.45 BV=1000 IBV=5u CJO=26.5p M=0.333 TT=4.32u)
+.model Q2N2222 NPN(IS=14.34f BF=255.9 VAF=74.03 IKF=0.2847 NE=1.307 ISE=14.34f BR=6.092 RB=10 RC=1 CJE=22.01p CJC=7.306p TF=411.1p TR=46.91n)
+
+.tran 150m
+.end

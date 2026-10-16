@@ -1,0 +1,15 @@
+LTspice 26.1.1 for Windows
+Circuit: C:\Users\82109\OneDrive\바탕 화면\CAN do it\battery_front.cir
+Start Time: Fri Oct  9 02:04:42 2026
+solver = Normal
+Maximum thread count: 8
+tnom = 27
+temp = 27
+method = trap
+Direct Newton iteration succeeded in finding operating point.
+Total elapsed time: 1.121 seconds.
+Total iterations: 136132
+
+Files loaded:
+C:\Users\82109\OneDrive\바탕 화면\CAN do it\battery_front.cir
+
